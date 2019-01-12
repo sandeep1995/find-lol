@@ -1,10 +1,10 @@
 const path = require('path');
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 
-const lolFinderBatchFile = path.resolve(__dirname, 'scripts', 'findLOL.bat');
+const lolFinderBatchFile = path.normalize(path.resolve(__dirname, 'scripts', 'findLOL.bat'));
 
 const lolFinder = () => new Promise((resolve, reject) => {
-  exec(lolFinderBatchFile, (err, stdout, stderr) => {
+  execFile(lolFinderBatchFile, (err, stdout, stderr) => {
     if (err) {
       reject(new Error(err));
     }
