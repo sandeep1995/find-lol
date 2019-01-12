@@ -1,2 +1,2 @@
 @echo off
-powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, InstallLocation | Where-Object DisplayName -eq \"League of Legends\""
+powershell -Command "Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall| Where-Object { $_.getValue(\"DisplayName\") -match \"League of Legends\" } | ForEach-Object { $_.getValue(\"InstallLocation\")}"
